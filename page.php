@@ -1,7 +1,13 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
-?>
+if (trim($this->fields->mainPic) != ''): ?>
+<style>
+	#main-pic {
+		background-image: url("<?php $this->fields->mainPic(); ?>") !important;
+	}
+</style>
+<?php endif; ?>
 <div id="main">
 	<div id="main-pic">
 		<h1><?php $this->title() ?></h1>

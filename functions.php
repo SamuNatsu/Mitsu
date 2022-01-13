@@ -40,8 +40,8 @@ function themeConfig($form) {
 	$compress = new \Typecho\Widget\Helper\Form\Element\Radio(
 		'compress',
 		[
-			'Yes'		=> _t('开启'),
-			'No'		=> _t('关闭')
+			'Yes'	=> _t('开启'),
+			'No'	=> _t('关闭')
 		],
 		'No',
 		_t('网页压缩'),
@@ -51,8 +51,8 @@ function themeConfig($form) {
 	$cache = new \Typecho\Widget\Helper\Form\Element\Radio(
 		'cache',
 		[
-			'Yes'		=> _t('开启'),
-			'No'		=> _t('关闭')
+			'Yes'	=> _t('开启'),
+			'No'	=> _t('关闭')
 		],
 		'No',
 		_t('网页缓存'),
@@ -84,6 +84,28 @@ function themeConfig($form) {
 	$form->addInput($ICP);
 }
 
+function themeFields($layout) {
+	$mainPic = new \Typecho\Widget\Helper\Form\Element\Text(
+		'mainPic',
+		null,
+		null,
+		_t('文章头图URL'),
+		_t('在这里填入一个图片URL，留空则是默认头图')
+	);
+	$layout->addItem($mainPic);
+	$showNav = new \Typecho\Widget\Helper\Form\Element\Radio(
+		'showNav',
+		[
+			'Yes'	=> _t('显示'),
+			'No'	=> _t('隐藏')
+		],
+		'No',
+		_t('页面是否在导航栏显示'),
+		_t('注：该选项仅针对页面生效，默认不显示')
+	);
+	$layout->addItem($showNav);
+}
+
 function pageNav($context, $overpass = false) {
 	if (!$overpass && !$context->is('archive'))
 		return;
@@ -103,10 +125,10 @@ function printTime($time) {
 	$itv = $date->diff(new DateTime('now'), true);
 	echo '<div id="footer-time">Run for ';
 	if ($itv->y)
-		echo $itv->y . ' Y ';
+		echo $itv->y . ($itv->y > 1 ? ' Years ' : ' Year ');
 	if ($itv->m)
-		echo $itv->m . ' M ';
-	echo $itv->d . ' D</div>';
+		echo $itv->m . ($itv->m > 1 ? ' Months ' : ' Month ');
+	echo $itv->d . ($itv->d > 1 ? ' Days</div>' : ' Day</div>');
 }
 
 include_once 'var/compress_cache.php';

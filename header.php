@@ -57,6 +57,7 @@ if ($this->options->maintainMode == 'Yes' && !$this->user->pass('administrator',
 		</div>
 	<?php \Widget\Contents\Page\Rows::alloc()->to($pages); ?>
 	<?php while ($pages->next()): ?>
+		<?php if ($pages->fields->showNav != 'Yes') continue; ?>
 		<div class="nav-item">
 			<a href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
 		</div>
