@@ -1,0 +1,87 @@
+/*! contents.css | Mitsu | v0.0.1*/
+/* Link */
+#contents a {
+	text-decoration: underline;
+}
+#contents a:hover {
+	color: #06f;
+}
+/* List */
+#contents li {
+	margin-bottom: 2px;
+}
+#contents li > p {
+	margin: 0;
+}
+/* Table */
+#contents table {
+	background-color: #fffd;
+	border-collapse: collapse;
+	white-space: nowrap;
+	width: 100%;
+}
+#contents table, 
+#contents td {
+	border: solid 1px #888;
+}
+#contents td,
+#contents th {
+	padding: 10px;
+}
+#contents th {
+	color: #fff;
+	background-color: #3f3f3f;
+}
+#contents tr:hover {
+	background-color: #f5f5f5d0;
+}
+#contents tr:nth-child(even) {
+	background-color: #f2f2f2d0;
+}
+/* Misc */
+#contents blockquote {
+	background-color: #fffd;
+	border-left: solid 5px black;
+	color: #888;
+	font-style: italic;
+	margin-left: 0;
+	padding: 10px 10px 10px 30px;
+}
+#contents hr {
+	border: none;
+	border-top: dashed 3px;
+	margin: 30px auto;
+	width: 85%;
+}
+#contents p code {
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: gray 1px 1px 3px;
+	padding: 1px 5px;
+}
+#contents p img {
+	max-width: 100%;
+}
+/* Footer */
+#end-tag {
+	border-bottom: dashed;
+	color: #bbb;
+	margin-bottom: 15px;
+	padding-bottom: 8px;
+	text-align: center;
+	font-style: italic;
+}
+#last-modify {
+	color: gray;
+	font-style: italic;
+	font-weight: bold;
+	margin-bottom: 15px;
+	text-align: right;
+}
+#main-tags a {
+	color: #06f;
+	margin: 0 4px;
+}
+#main-tags a::before {
+	content: '#';
+}
