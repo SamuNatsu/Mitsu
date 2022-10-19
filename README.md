@@ -1,2 +1,3 @@
 # Mitsu
-A Simple & Pure but Powerful Typecho Theme
+A Simple But Powerful Typecho Theme
+
