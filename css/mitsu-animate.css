@@ -1,0 +1,64 @@
+/*! mitsu-animate.css - Mitsu - v0.0.1 */
+
+/* Hover underline left - right */
+.hover-u-lr {
+	display: inline-block;
+    position: relative;
+}
+.hover-u-lr::after {
+	background: lightcoral;
+    bottom: -3px;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform .2s ease-out;
+    width: 100%;
+}
+.hover-u-lr:hover::after {
+	transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Hover underline center - side */
+.hover-u-cs {
+	display: inline-block;
+    position: relative;
+}
+.hover-u-cs::after {
+	background: lightcoral;
+    bottom: -3px;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: bottom center;
+    transition: transform .2s ease-out;
+    width: 100%;
+}
+.hover-u-cs:hover::after {
+	transform: scaleX(1);
+}
+
+/* Hover emphasize */
+.hover-em {
+	transition: color .2s;
+}
+.hover-em:hover {
+	color: black;
+}
+
+/* Shake */
+@keyframes ani-shake {
+    0% {transform: rotate(0);}
+    25% {transform: rotate(10deg);}
+    50% {transform: rotate(0);}
+    75% {transform: rotate(-10deg);}
+    100% {transform: rotate(0);}
+}
+.hover-shake:hover {
+    animation: ani-shake .1s linear;
+}
