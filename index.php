@@ -28,6 +28,12 @@ $this->need('header.php');
 <?php endwhile; ?>
 </div>
 
-<?php $this->pageNav('&laquo;', '&raquo;', 3, '...', 'wrapTag=ol&wrapClass=pagination&itemTag=li&textTag=span&currentClass=active&prevClass=prev&nextClass=next'); ?>
+<?php $this->pageNav(
+	_t('&laquo;上一页'), 
+	_t('下一页&raquo;'),
+	1,
+	'...',
+	'wrapTag=div&wrapClass=flex-row flex-m-center page-nav&itemTag=div&currentClass=page-nav-current&prevClass=page-nav-prev&nextClass=page-nav-next'
+); ?>
 
 <?php $this->need('footer.php'); ?>

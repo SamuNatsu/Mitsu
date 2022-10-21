@@ -29,3 +29,6 @@ const delay = (ms)=>{
 		setTimeout(resolve, ms);
 	});
 };
+
+// Ease out quint
+const easeOutQuint = (t, b, c, d)=>c * ((t = t / d - 1) * t * t * t * t + 1) + b;

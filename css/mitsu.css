@@ -111,6 +111,52 @@ header {
 	}
 }
 
+/* Page navigation */
+.page-nav {
+	font-weight: bold;
+	margin-bottom: 40px;
+}
+.page-nav>div {
+	border-radius: 10px;
+	margin: 0 20px;
+	padding: 5px 10px;
+	transition: all .5s;
+}
+.page-nav>div:hover {
+	background: #aaa;
+	color: white;
+}
+.page-nav-current {
+	background: #aaa;
+	color: white;
+}
+
+/* Side button | z-index: 9999 */
+#side-btn {
+	bottom: 10%;
+	right: 5%;
+	position: fixed;
+}
+#side-btn>div {
+	background: white;
+	border-radius: 100%;
+	box-shadow: lightgray 1px 1px 5px;
+	cursor: pointer;
+	margin: 10px;
+	padding: 10px;
+	height: 50px;
+	width: 50px;
+	transition: box-shadow .3s;
+}
+#side-btn>div:hover {
+	box-shadow: gray 1px 1px 5px;
+}
+@media (max-width: 600px) {
+	#side-btn {
+		display: none;
+	}
+}
+
 /* Sidebar | z-index: 10000~10001 */
 .sidebar-background {
 	background: black;

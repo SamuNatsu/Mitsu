@@ -9,6 +9,8 @@ const Sidebar = {
 		let w = window.getComputedStyle(this.data.elFront).width;
 		Html.appendStyle(".sidebar{left:-" + w + "}");
 
+		Html.select("#side-btn-bar")[0].addEventListener("click", ()=>this.show());
+
 		this.data.elBack.addEventListener("click", ()=>this.hide());
 	},
 	show: function() {

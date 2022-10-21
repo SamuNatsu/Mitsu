@@ -12,6 +12,32 @@ onDOMContentLoaded(()=>{
 	Animate.console.in(el, el.innerHTML, 1000);
 });
 
+// Scroll top
+let scrollAnimateId = null;
+const scrollTop = ()=>{
+	if (scrollAnimateId !== null) {
+		cancelAnimationFrame(scrollAnimateId);
+		scrollAnimateId = null;
+	}
+
+	let offset = window.scrollY;
+	let start = new Date().getTime();
+	let scrollAnimate = ()=>{
+		scrollAnimateId = requestAnimationFrame(scrollAnimate);
+
+		let now = new Date().getTime();
+		if (now - start >= 500 || window.scrollY < 1) {
+			window.scrollTo(0, 0);
+			cancelAnimationFrame(scrollAnimateId);
+			scrollAnimateId = null;
+			return;
+		}
+		window.scrollTo(0, offset - easeOutQuint(now - start, 0, offset, 500));
+	}
+	scrollAnimate();
+};
+onDOMContentLoaded(()=>Html.select("#side-btn-top")[0].addEventListener("click", ()=>scrollTop()));
+
 // Pjax handling
 let pjax = null;
 const pjaxInit = ()=>{
@@ -49,8 +75,10 @@ const pjaxInit = ()=>{
 				});
 				this.onSwitch();
 			}
-		}
+		},
+		scrollTo: false
 	});
+	pjax._fadeAnimate = null;
 
 	// Set event listener
 	document.addEventListener("pjax:send", ()=>{
@@ -59,6 +87,7 @@ const pjaxInit = ()=>{
 		pjax._modified = true;
 	});
 	document.addEventListener("pjax:complete", ()=>Progress.end());
+	document.addEventListener("pjax:success", ()=>scrollTop());
 	document.addEventListener("pjax:error", (e)=>{
 		window.location.href = e.request.responseURL;
 	});
