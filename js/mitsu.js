@@ -8,7 +8,7 @@ onDOMContentLoaded(()=>{
 	Sidebar.init();
 
 	// Title animation
-	let el = Html.select(".header-title")[0];
+	let el = Html.select("#header-title")[0];
 	Animate.console.in(el, el.innerHTML, 1000);
 });
 
@@ -46,32 +46,32 @@ const pjaxInit = ()=>{
 		elements: 'a[href^="' + siteUrl + '"]:not(a[target="_blank"],a[no-pjax]), a[href^="?"]',
 		selectors: [
 			"title",
-			".top-bar-nav",
-			".header-title",
+			"#top-bar-nav",
+			"#header-title",
 			"#main"
 		],
 		switches: {
-			".header-title": async function (oldEl, newEl) {
+			"#header-title": function (oldEl, newEl) {
 				if (oldEl.innerHTML === newEl.innerHTML) {
 					this.onSwitch();
 					return;
 				}
 
-				let el = Html.select(".header-title")[0];
-				Animate.console.out(el, el.innerHTML, 1000).then(()=>Animate.console.in(el, newEl.innerHTML, 1000).then(()=>{}));
+				Animate.console.out(oldEl, 1000, ()=>{
+					Animate.console.in(oldEl, newEl.innerHTML, 1000);
+				});
 				this.onSwitch();
 			},
-			"#main": async function (oldEl, newEl) {
+			"#main": function (oldEl, newEl) {
 				if (!pjax._modified) {
 					this.onSwitch();
 					return;
 				}
 
-				Animate.fade.out(oldEl, 500).then(()=>{
+				Animate.fade.out(oldEl, 500, easeOutQuad, ()=>{
 					oldEl.innerHTML = newEl.innerHTML;
-					oldEl.setAttribute("data-cid", newEl.getAttribute("data-cid"));
 					pjax.refresh();
-					Animate.fade.in(oldEl, 500).then(()=>{});
+					Animate.fade.in(oldEl, 500, easeInQuad);
 				});
 				this.onSwitch();
 			}

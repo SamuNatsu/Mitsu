@@ -3,7 +3,7 @@
 const Hitokoto = {
 	data: {},
 	init: async function() {
-		let el = Html.select(".header-desc")[0];
+		let el = Html.select("#header-desc")[0];
 		if (el === null || !el.hasAttribute("data-hitokoto")) {
 			console.log("[Mitsu:Hitokoto] Service disabled");
 			return;
@@ -41,8 +41,9 @@ const Hitokoto = {
 			return;
 
 		let text = await this.fetch();
-		await Animate.console.out(this.data.element, this.data.element.innerHTML, 1000);
-		await delay(200);
-		await Animate.console.in(this.data.element, text, 2000);
+		Animate.console.out(this.data.element, 1000, async ()=>{
+			await delay(200);
+			Animate.console.in(this.data.element, text, 2000);
+		});
 	}
 };

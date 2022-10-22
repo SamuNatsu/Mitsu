@@ -41,14 +41,5 @@ const Html = {
 		data.forEach((k, v)=>{
 			el.style[k] = v;
 		});
-	},
-	animate: (el, data)=>{
-		if (!(el instanceof Node))
-			throw "Not a Node object";
-
-		return new Promise((resolve)=>{
-			el.addEventListener("transitionend", resolve, {once: true});
-			Html.css(el, data);
-		});
 	}
 };
