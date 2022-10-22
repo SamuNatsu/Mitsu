@@ -13,7 +13,9 @@ const Sidebar = {
 
 		// Sidebar show/hide event listener
 		Html.select("#side-btn-bar")[0].addEventListener("click", ()=>this.show());
+		Html.select("#top-bar-menu")[0].addEventListener("click", ()=>this.show());
 		this.data.elBack.addEventListener("click", ()=>this.hide());
+		Html.select("#sidebar-cross")[0].addEventListener("click", ()=>this.hide());
 	},
 	show: function() {
 		// Show sidebar

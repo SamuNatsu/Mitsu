@@ -1,6 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit; 
 
+define('__TYPECHO_GRAVATAR_PREFIX__', 'https://gravatar.loli.net/avatar/');
+
 if ($this->options->maintain === '1' && !$this->user->pass('administrator', true)) {
 	$this->response->setStatus(503);
 	$this->need('maintain.php');
@@ -53,7 +55,6 @@ if ($this->options->maintain === '1' && !$this->user->pass('administrator', true
 			background-repeat: no-repeat;
 			background-blend-mode: multiply;
 			background-color: #ddd;
-			<?php $this->options->headerPicStyle(); ?>
 		<?php else: ?>
 			background-color: #e5e5f7;
 			background-image: linear-gradient(135deg, #88ccff 25%, transparent 25%), linear-gradient(225deg, #88ccff 25%, transparent 25%), linear-gradient(45deg, #88ccff 25%, transparent 25%), linear-gradient(315deg, #88ccff 25%, #e5e5f7 25%);
@@ -61,6 +62,7 @@ if ($this->options->maintain === '1' && !$this->user->pass('administrator', true
 			background-size: 80px 80px;
 			background-repeat: repeat;
 		<?php endif; ?>
+		<?php $this->options->headerPicStyle(); ?>
 		}
 
 		<?php if ($this->options->maintain == "1"): ?>
@@ -78,6 +80,23 @@ if ($this->options->maintain === '1' && !$this->user->pass('administrator', true
 			z-index: 20000;
 		}
 		<?php endif; ?>
+
+		#sidebar-me-background {
+		<?php if ($this->options->mePic): ?>
+			background: url("<?php $this->options->mePic(); ?>");
+			background-size: cover;
+			background-position-y: center;
+			background-repeat: no-repeat;
+		<?php else: ?>
+			background-color: #f7f0e6;
+			background-image:  linear-gradient(135deg, #f7b345 25%, transparent 25%), linear-gradient(225deg, #f7b345 25%, transparent 25%), linear-gradient(45deg, #f7b345 25%, transparent 25%), linear-gradient(315deg, #f7b345 25%, #f7f0e6 25%);
+			background-position:  40px 0, 40px 0, 0 0, 0 0;
+			background-size: 80px 80px;
+			background-repeat: repeat;
+		<?php endif; ?>
+			opacity: 0.5;
+		<?php $this->options->mePicStyle(); ?>
+		}
 	</style>
 
 	<!-- Site URL -->
@@ -106,6 +125,7 @@ if ($this->options->maintain === '1' && !$this->user->pass('administrator', true
         <?php endwhile; ?>
 		<?php unset($pages); ?>
 		</div>
+		<div id="top-bar-menu"><img src="<?php $this->options->themeUrl('svg/bar.svg'); ?>"/></div>
 	</div>
 
 	<!-- Header -->

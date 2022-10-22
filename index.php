@@ -29,11 +29,11 @@ $this->need('header.php');
 </div>
 
 <?php $this->pageNav(
-	_t('&laquo;上一页'), 
-	_t('下一页&raquo;'),
-	1,
+	_t('&laquo;'), 
+	_t('&raquo;'),
+	0,
 	'...',
-	'wrapTag=div&wrapClass=flex-row flex-m-center page-nav&itemTag=div&currentClass=page-nav-current&prevClass=page-nav-prev&nextClass=page-nav-next'
+	'wrapTag=div&wrapClass=flex-row flex-m-around page-nav&itemTag=div&currentClass=page-nav-current&prevClass=page-nav-prev&nextClass=page-nav-next'
 ); ?>
 
 <?php $this->need('footer.php'); ?>

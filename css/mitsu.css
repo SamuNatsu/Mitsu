@@ -36,9 +36,17 @@ body {
 .top-bar-nav-current {
 	color: crimson !important;
 }
+#top-bar-menu {
+	display: none;
+	height: 1.3em;
+	width: 1.3em;
+}
 @media (max-width: 600px) {
 	#top-bar-nav {
 		display: none;
+	}
+	#top-bar-menu {
+		display: block;
 	}
 }
 
@@ -63,7 +71,7 @@ header {
 		max-height: 250px;
 	}
 	#header-title {
-		font-size: 1.5em;
+		font-size: 2em;
 		margin-bottom: 0;
 	}
 	#header-desc {
@@ -113,11 +121,11 @@ header {
 /* Page navigation */
 .page-nav {
 	font-weight: bold;
-	margin-bottom: 40px;
+	margin: 0 auto 40px auto;
+	width: 60%;
 }
 .page-nav>div {
 	border-radius: 10px;
-	margin: 0 20px;
 	padding: 5px 10px;
 	transition: all .5s;
 }
@@ -178,8 +186,7 @@ header {
 	transition: opacity .3s, height .1s step-end .3s !important;
 }
 #sidebar {
-	background: #f7f7f7dd;
-	height: 100%;
+	padding: 30px 20px;
 	position: fixed;
 	top: 0;
 	width: 500px;
@@ -189,6 +196,77 @@ header {
 }
 .sidebar-show {
 	left: 0 !important;	
+}
+#sidebar-cross {
+	display: none;
+	height: 30px;
+	right: 0;
+	top: 0;
+	width: 30px;
+	position: absolute;
+}
+#sidebar-me {
+	background: white;
+	border-radius: 10px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+#sidebar-me-background {
+	height: 120px;
+}
+#sidebar-me-gravatar {
+	background-color: #ffffff;
+	background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 60px 60px, linear-gradient(#ff0000 4.8px, transparent 4.8px) 0 -2.4px, linear-gradient(90deg, #ff0000 4.8px, #ffffff 4.8px) -2.4px 0;
+	background-size: 120px 120px, 120px 120px, 60px 60px, 60px 60px;
+	border: 1px solid white;
+	border-radius: 100%;
+	height: 120px;
+	left: 20px;
+	overflow: hidden;
+	position: absolute;
+	top: 40px;
+	width: 120px;
+}
+#sidebar-me-name {
+	font-size: 2em;
+	font-weight: bold;
+	height: 120px;
+	left: 160px;
+	position: absolute;
+	top: 0;
+	width: calc(100% - 160px);
+}
+#sidebar-me-desc {
+	height: 80px;
+	padding: 20px 20px 20px 160px;
+}
+@media (max-width: 600px) {
+	#sidebar-cross {
+		display: block;
+	}
+}
+@media (max-width: 500px) {
+	#sidebar-me {
+		height: calc(280px + 1em);
+	}
+	#sidebar-me-gravatar {
+		left: calc(50% - 60px);
+	}
+	#sidebar-me-name {
+		height: 0;
+		left: 0;
+		top: 200px;
+		width: 100%;
+	}
+	#sidebar-me-desc {
+		border: 2px dashed lightgray;
+		padding: 10px 20px 20px 20px;
+		position: absolute;
+		top: calc(210px + 1em);
+		width: 100%;
+	}
 }
 
 /* Footer */

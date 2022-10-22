@@ -4,13 +4,13 @@ const Hitokoto = {
 	data: {},
 	init: async function() {
 		let el = Html.select("#header-desc")[0];
-		if (el === null || !el.hasAttribute("data-hitokoto")) {
+		if (el === null || (typeof el.dataset.hitokoto) !== "string") {
 			console.log("[Mitsu:Hitokoto] Service disabled");
 			return;
 		}
 
 		this.data.element = el;
-		this.data.url = el.getAttribute("data-hitokoto");
+		this.data.url = el.dataset.hitokoto;
 
 		let callback = async ()=>{
 			await this.refresh();
