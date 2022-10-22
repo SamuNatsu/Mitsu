@@ -1,6 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit; 
 
+define('__TYPECHO_GRAVATAR_PREFIX__', 'https://gravatar.loli.net/avatar/');
+
 if ($this->options->maintain === '1' && !$this->user->pass('administrator', true)) {
 	$this->response->setStatus(503);
 	$this->need('maintain.php');
@@ -35,12 +37,12 @@ if ($this->options->maintain === '1' && !$this->user->pass('administrator', true
 	<script src="https://cdn.staticfile.org/KaTeX/0.16.2/contrib/auto-render.min.js"></script>
 	<script src="https://cdn.staticfile.org/pjax/0.2.8/pjax.min.js"></script>
 	<script src="<?php $this->options->themeUrl('js/mitsu-ajax.js'); ?>"></script>
+	<script src="<?php $this->options->themeUrl('js/mitsu-animate.js'); ?>"></script>
 	<script src="<?php $this->options->themeUrl('js/mitsu-hitokoto.js'); ?>"></script>
 	<script src="<?php $this->options->themeUrl('js/mitsu-html.js'); ?>"></script>
 	<script src="<?php $this->options->themeUrl('js/mitsu-sidebar.js'); ?>"></script>
 	<script src="<?php $this->options->themeUrl('js/mitsu-progress.js'); ?>"></script>
 
-	<script src="<?php $this->options->themeUrl('js/animate.js'); ?>"></script>
 	<script src="<?php $this->options->themeUrl('js/utils.js'); ?>"></script>
 
 	<!-- Option style -->
@@ -53,7 +55,6 @@ if ($this->options->maintain === '1' && !$this->user->pass('administrator', true
 			background-repeat: no-repeat;
 			background-blend-mode: multiply;
 			background-color: #ddd;
-			<?php $this->options->headerPicStyle(); ?>
 		<?php else: ?>
 			background-color: #e5e5f7;
 			background-image: linear-gradient(135deg, #88ccff 25%, transparent 25%), linear-gradient(225deg, #88ccff 25%, transparent 25%), linear-gradient(45deg, #88ccff 25%, transparent 25%), linear-gradient(315deg, #88ccff 25%, #e5e5f7 25%);
@@ -61,10 +62,11 @@ if ($this->options->maintain === '1' && !$this->user->pass('administrator', true
 			background-size: 80px 80px;
 			background-repeat: repeat;
 		<?php endif; ?>
+		<?php $this->options->headerPicStyle(); ?>
 		}
 
 		<?php if ($this->options->maintain == "1"): ?>
-		.maintain {
+		#maintain {
 			background: red;
 			bottom: 0;
 			color: white;
@@ -78,6 +80,23 @@ if ($this->options->maintain === '1' && !$this->user->pass('administrator', true
 			z-index: 20000;
 		}
 		<?php endif; ?>
+
+		#sidebar-me-background {
+		<?php if ($this->options->mePic): ?>
+			background: url("<?php $this->options->mePic(); ?>");
+			background-size: cover;
+			background-position-y: center;
+			background-repeat: no-repeat;
+		<?php else: ?>
+			background-color: #f7f0e6;
+			background-image:  linear-gradient(135deg, #f7b345 25%, transparent 25%), linear-gradient(225deg, #f7b345 25%, transparent 25%), linear-gradient(45deg, #f7b345 25%, transparent 25%), linear-gradient(315deg, #f7b345 25%, #f7f0e6 25%);
+			background-position:  40px 0, 40px 0, 0 0, 0 0;
+			background-size: 80px 80px;
+			background-repeat: repeat;
+		<?php endif; ?>
+			opacity: 0.5;
+		<?php $this->options->mePicStyle(); ?>
+		}
 	</style>
 
 	<!-- Site URL -->
@@ -94,23 +113,24 @@ if ($this->options->maintain === '1' && !$this->user->pass('administrator', true
 
 <body>
 	<!-- Progress bar -->
-	<div class="progress-bar"></div>
+	<div id="progress-bar"></div>
 
 	<!-- Top bar -->
-	<div class="flex-row flex-m-between flex-x-center top-bar">
-		<div class="top-bar-title hover-shake"><a href="<?php $this->options->siteUrl(); ?>" title="<?php _e("主页"); ?>"><?php $this->options->title(); ?></a></div>
-		<div class="flex-row top-bar-nav">
+	<div id="top-bar" class="flex-row flex-m-between flex-x-center">
+		<div id="top-bar-title" class="hover-shake"><a href="<?php $this->options->siteUrl(); ?>" title="<?php _e("主页"); ?>"><?php $this->options->title(); ?></a></div>
+		<div id="top-bar-nav" class="flex-row">
 		<?php \Widget\Contents\Page\Rows::alloc()->to($pages); ?>
 		<?php while ($pages->next()): ?>
             <div><a class="hover-u-cs<?php if ($this->is('page', $pages->slug)): ?> top-bar-nav-current<?php endif; ?>" href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>"><?php $pages->title(); ?></a></div>
         <?php endwhile; ?>
 		<?php unset($pages); ?>
 		</div>
+		<div id="top-bar-menu"><img src="<?php $this->options->themeUrl('svg/bar.svg'); ?>"/></div>
 	</div>
 
 	<!-- Header -->
 	<header class="flex-col flex-m-center flex-x-center">
-		<div class="header-title"><?php 
+		<div id="header-title"><?php 
 			if ($this->archiveTitle)
 				$this->archiveTitle([
             		'category' => _t('分类 %s 下的文章'),
@@ -122,9 +142,9 @@ if ($this->options->maintain === '1' && !$this->user->pass('administrator', true
 				$this->options->title();
 		?></div>
 	<?php if ($this->options->replaceDescription): ?>
-		<div class="header-desc" data-hitokoto="<?php $this->options->replaceDescription(); ?>">. . . . . . . . . . . .</div>
+		<div id="header-desc" data-hitokoto="<?php $this->options->replaceDescription(); ?>">. . . . . . . . . . . .</div>
 	<?php else: ?>
-		<div class="header-desc"><?php $this->options->description(); ?></div>
+		<div id="header-desc"><?php $this->options->description(); ?></div>
 	<?php endif; ?>
 	</header>
 

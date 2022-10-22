@@ -29,3 +29,10 @@ const delay = (ms)=>{
 		setTimeout(resolve, ms);
 	});
 };
+
+// Ease in quad
+const easeInQuad = (t, b, c, d)=>c * (t /= d) * t + b;
+// Ease out quad
+const easeOutQuad = (t, b, c, d)=>-c * (t /= d) * (t - 2) + b;
+// Ease out quint
+const easeOutQuint = (t, b, c, d)=>c * ((t = t / d - 1) * t * t * t * t + 1) + b;

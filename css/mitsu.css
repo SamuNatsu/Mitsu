@@ -10,7 +10,7 @@ body {
 }
 
 /* Top bar | z-index: 5000 */
-.top-bar {
+#top-bar {
 	background: #fffa;
 	backdrop-filter: blur(5px);
 	left: 0;
@@ -20,41 +20,48 @@ body {
 	width: 100%;
 	z-index: 5000;
 }
-.top-bar-title {
+#top-bar-title {
 	font-size: 1.3em;
 	font-weight: bold;
 }
-.top-bar-nav>div {
+#top-bar-nav>div {
 	color: black;
 	font-weight: bold;
 	margin: 0 15px;
 	transition: all .2s;
 }
-.top-bar-nav>div:hover {
+#top-bar-nav>div:hover {
 	color: crimson;
 }
 .top-bar-nav-current {
-	color: crimson;
+	color: crimson !important;
+}
+#top-bar-menu {
+	display: none;
+	height: 1.3em;
+	width: 1.3em;
 }
 @media (max-width: 600px) {
-	.top-bar-nav {
+	#top-bar-nav {
 		display: none;
+	}
+	#top-bar-menu {
+		display: block;
 	}
 }
 
 /* Header */
 header {
+	color: white;
 	height: 400px;
 	width: 100%;
 }
-.header-title {
-	color: white;
+#header-title {
 	font-size: 3em;
 	margin-bottom: 20px;
 	max-width: 90%;
 }
-.header-desc {
-	color: white;
+#header-desc {
 	font-size: 1.2em;
 	max-width: 90%;
 	min-height: 1.2em;
@@ -63,11 +70,11 @@ header {
 	header {
 		max-height: 250px;
 	}
-	.header-title {
-		font-size: 1.5em;
+	#header-title {
+		font-size: 2em;
 		margin-bottom: 0;
 	}
-	.header-desc {
+	#header-desc {
 		display: none;
 	}
 }
@@ -111,8 +118,54 @@ header {
 	}
 }
 
+/* Page navigation */
+.page-nav {
+	font-weight: bold;
+	margin: 0 auto 40px auto;
+	width: 60%;
+}
+.page-nav>div {
+	border-radius: 10px;
+	padding: 5px 10px;
+	transition: all .5s;
+}
+.page-nav>div:hover {
+	background: #aaa;
+	color: white;
+}
+.page-nav-current {
+	background: #aaa;
+	color: white;
+}
+
+/* Side button | z-index: 9999 */
+#side-btn {
+	bottom: 10%;
+	right: 5%;
+	position: fixed;
+}
+#side-btn>div {
+	background: white;
+	border-radius: 100%;
+	box-shadow: lightgray 1px 1px 5px;
+	cursor: pointer;
+	margin: 10px;
+	padding: 10px;
+	height: 50px;
+	width: 50px;
+	transition: box-shadow .3s;
+}
+#side-btn>div:hover {
+	box-shadow: gray 1px 1px 5px;
+}
+@media (max-width: 600px) {
+	#side-btn {
+		display: none;
+	}
+}
+
 /* Sidebar | z-index: 10000~10001 */
-.sidebar-background {
+#sidebar-background {
 	background: black;
 	height: 0;
 	left: 0;
@@ -123,18 +176,17 @@ header {
 	z-index: 10000;
 }
 .sidebar-background-show {
-	height: 100%;
-	opacity: 0.7;
-	transition: opacity .3s;
+	height: 100% !important;
+	opacity: 0.7 !important;
+	transition: opacity .3s !important;
 }
 .sidebar-background-hide {
-	height: 0;
-	opacity: 0;
-	transition: opacity .3s, height .1s step-end .3s;
+	height: 0 !important;
+	opacity: 0 !important;
+	transition: opacity .3s, height .1s step-end .3s !important;
 }
-.sidebar {
-	background: #f7f7f7dd;
-	height: 100%;
+#sidebar {
+	padding: 30px 20px;
 	position: fixed;
 	top: 0;
 	width: 500px;
@@ -145,9 +197,80 @@ header {
 .sidebar-show {
 	left: 0 !important;	
 }
+#sidebar-cross {
+	display: none;
+	height: 30px;
+	right: 0;
+	top: 0;
+	width: 30px;
+	position: absolute;
+}
+#sidebar-me {
+	background: white;
+	border-radius: 10px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+#sidebar-me-background {
+	height: 120px;
+}
+#sidebar-me-gravatar {
+	background-color: #ffffff;
+	background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 60px 60px, linear-gradient(#ff0000 4.8px, transparent 4.8px) 0 -2.4px, linear-gradient(90deg, #ff0000 4.8px, #ffffff 4.8px) -2.4px 0;
+	background-size: 120px 120px, 120px 120px, 60px 60px, 60px 60px;
+	border: 1px solid white;
+	border-radius: 100%;
+	height: 120px;
+	left: 20px;
+	overflow: hidden;
+	position: absolute;
+	top: 40px;
+	width: 120px;
+}
+#sidebar-me-name {
+	font-size: 2em;
+	font-weight: bold;
+	height: 120px;
+	left: 160px;
+	position: absolute;
+	top: 0;
+	width: calc(100% - 160px);
+}
+#sidebar-me-desc {
+	height: 80px;
+	padding: 20px 20px 20px 160px;
+}
+@media (max-width: 600px) {
+	#sidebar-cross {
+		display: block;
+	}
+}
+@media (max-width: 500px) {
+	#sidebar-me {
+		height: calc(280px + 1em);
+	}
+	#sidebar-me-gravatar {
+		left: calc(50% - 60px);
+	}
+	#sidebar-me-name {
+		height: 0;
+		left: 0;
+		top: 200px;
+		width: 100%;
+	}
+	#sidebar-me-desc {
+		border: 2px dashed lightgray;
+		padding: 10px 20px 20px 20px;
+		position: absolute;
+		top: calc(210px + 1em);
+		width: 100%;
+	}
+}
 
 /* Footer */
-.before-footer {
+#before-footer {
 	color: lightgray;
 	font-size: 0.8em;
 	text-align: center;

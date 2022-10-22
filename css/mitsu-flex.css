@@ -25,6 +25,9 @@
 .flex-m-between {
 	justify-content: space-between;
 }
+.flex-m-around {
+	justify-content: space-around;
+}
 
 .flex-x-center {
 	align-items: center;
