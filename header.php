@@ -125,7 +125,7 @@ if ($this->options->maintain === '1' && !$this->user->pass('administrator', true
         <?php endwhile; ?>
 		<?php unset($pages); ?>
 		</div>
-		<div id="top-bar-menu"><img src="<?php $this->options->themeUrl('svg/bar.svg'); ?>"/></div>
+		<div id="top-bar-menu"><img src="<?php $this->options->themeUrl('svg/menu.svg'); ?>"/></div>
 	</div>
 
 	<!-- Header -->

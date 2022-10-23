@@ -16,6 +16,13 @@
 	flex-direction: column-reverse;
 }
 
+.flex-wrap {
+	flex-wrap: wrap;
+}
+.flex-wrap-rev {
+	flex-wrap: wrap-reverse;
+}
+
 .flex-m-end {
 	justify-content: flex-end;
 }
