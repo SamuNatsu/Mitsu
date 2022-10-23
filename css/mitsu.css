@@ -129,7 +129,7 @@ header {
 	padding: 5px 10px;
 	transition: all .5s;
 }
-.page-nav>div:hover {
+.page-nav>div:has(a):hover {
 	background: #aaa;
 	color: white;
 }
@@ -185,6 +185,7 @@ header {
 	opacity: 0 !important;
 	transition: opacity .3s, height .1s step-end .3s !important;
 }
+
 #sidebar {
 	padding: 30px 20px;
 	position: fixed;
@@ -197,6 +198,7 @@ header {
 .sidebar-show {
 	left: 0 !important;	
 }
+
 #sidebar-cross {
 	display: none;
 	height: 30px;
@@ -205,10 +207,12 @@ header {
 	width: 30px;
 	position: absolute;
 }
+
 #sidebar-me {
 	background: white;
 	border-radius: 10px;
 	height: 200px;
+	margin-bottom: 30px;
 	overflow: hidden;
 	position: relative;
 	width: 100%;
@@ -242,6 +246,20 @@ header {
 	height: 80px;
 	padding: 20px 20px 20px 160px;
 }
+
+#sidebar-links {
+	background: white;
+	border-radius: 10px;
+	overflow: hidden;
+	padding: 10px;
+	position: relative;
+	width: 100%;
+}
+#sidebar-links>div {
+	height: 50px;
+	width: 50px;
+}
+
 @media (max-width: 600px) {
 	#sidebar-cross {
 		display: block;
