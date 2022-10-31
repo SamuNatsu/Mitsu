@@ -155,8 +155,7 @@ function themeConfig($form) {
         null,
         null,
         _t('【侧边栏 - 链接】自定义'),
-		_t('如果上面的默认链接都不符合你的要求，你可以在这里设置自定义链接。<br/>你需要填写一个 JSON 数组，数组的每个元素都是对象，对象包括 name、icon 和 href 三个字符串属性，分别表示链接的名字、链接的图标 URL 和链接。<br/>你可以使用我们默认的一个链接图标 URL：' . \Utils\Helper::options()->themeUrl . '/svg/link.svg<br/><br/>例：[{"name":"Gitlab","icon":"https://gitlab.youdomain.com/icon.svg","href":"https://gitlab.yourdomain.com"}]<br/>这个例子表示添加了一个 Gitlab 链接项。<br/><br/>注：如果 JSON 解析失败，则可能会出现不符合预期的输出。<hr class="mitsu-hr"/>')
+		_t('如果上面的默认链接都不符合你的要求，你可以在这里设置自定义链接。<br/>你需要填写一个 JSON 数组，数组的每个元素都是对象，对象包括 name、icon 和 href 三个字符串属性，分别表示链接的名字、链接的图标 URL 和链接。<br/>你可以使用我们默认的一个链接图标 URL：' . \Utils\Helper::options()->themeUrl . '/svg/link.svg<br/><br/>例：<br/>[{"name":"Gitlab","icon":"https://gitlab.youdomain.com/icon.svg","url":"https://gitlab.yourdomain.com"}]<br/>这个例子表示添加了一个 Gitlab 链接项。<br/><br/>注：<br/>如果 JSON 解析失败，则可能会出现不符合预期的输出<br/>图标我们推荐 80x80 的规格，其他尺寸可能有显示问题<hr class="mitsu-hr"/>')
     );
 	$form->addInput($customURL);
-
 }

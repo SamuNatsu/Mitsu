@@ -28,29 +28,50 @@
 		<?php $hasLink = true; ?>
 		<div class="hover-shake"><a href="mailto:<?php $this->options->mailTo(); ?>" title="<?php _e('电子邮箱'); ?>"><img src="<?php $this->options->themeUrl('svg/mail.svg'); ?>"/></a></div>
 	<?php endif; ?>
+
 	<?php if ($this->options->weiboURL): ?>
 		<?php $hasLink = true; ?>
 		<div class="hover-shake"><a href="<?php $this->options->weiboURL(); ?>" title="<?php _e('新浪微博'); ?>" target="_blank"><img src="<?php $this->options->themeUrl('svg/weibo.svg'); ?>"/></a></div>
 	<?php endif; ?>
+
 	<?php if ($this->options->biliURL): ?>
 		<?php $hasLink = true; ?>
 		<div class="hover-shake"><a href="<?php $this->options->biliURL(); ?>" title="<?php _e('Bilibili'); ?>" target="_blank"><img src="<?php $this->options->themeUrl('svg/bili.svg'); ?>"/></a></div>
 	<?php endif; ?>
+
 	<?php if ($this->options->tgURL): ?>
 		<?php $hasLink = true; ?>
 		<div class="hover-shake"><a href="<?php $this->options->tgURL(); ?>" title="<?php _e('Telegram'); ?>" target="_blank"><img src="<?php $this->options->themeUrl('svg/tg.svg'); ?>"/></a></div>
 	<?php endif; ?>
+
 	<?php if ($this->options->githubURL): ?>
 		<?php $hasLink = true; ?>
 		<div class="hover-shake"><a href="<?php $this->options->githubURL(); ?>" title="<?php _e('Github'); ?>" target="_blank"><img src="<?php $this->options->themeUrl('svg/github.svg'); ?>"/></a></div>
 	<?php endif; ?>
+
 	<?php if ($this->options->giteeURL): ?>
 		<?php $hasLink = true; ?>
 		<div class="hover-shake"><a href="<?php $this->options->giteeURL(); ?>" title="<?php _e('Gitee'); ?>" target="_blank"><img src="<?php $this->options->themeUrl('svg/gitee.svg'); ?>"/></a></div>
 	<?php endif; ?>
+
+	<?php 
+	if ($this->options->customURL) {
+		$arr = json_decode($this->options->customURL, true);
+		if (is_array($arr))
+			foreach ($arr as $item) {
+				if (!isset($item['name']) || !isset($item['icon']) || !isset($item['url']))
+					continue;
+				if (!is_string($item['name']) || !is_string($item['icon']) || !is_string($item['url']))
+					continue;
+				$hasLink = true;
+				echo "<div class=\"hover-shake\"><a href=\"{$item['url']}\" title=\"{$item['name']}\" target=\"_blank\"><img src=\"{$item['icon']}\"/></a></div>";
+			}
+	}
+	?>
 	</div>
 <?php if (!$hasLink): ?>
 	<style>#sidebar-links{display:none}</style>
 <?php endif; ?>
 <?php unset($hasLink); ?>
+
 </div>
